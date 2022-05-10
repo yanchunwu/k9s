@@ -154,6 +154,7 @@ func (a *Aliases) loadDefaultAliases() {
 	a.declare("portforwards", "portforward", "pf")
 	a.declare("benchmarks", "bench", "benchmark", "be")
 	a.declare("screendumps", "screendump", "sd")
+	a.declare("logdumps", "logdump", "ld")
 	a.declare("pulses", "pulse", "pu", "hz")
 	a.declare("xrays", "xray", "x")
 }

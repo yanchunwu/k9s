@@ -21,6 +21,8 @@ var (
 	K9sConfigFile = filepath.Join(K9sHome(), "config.yml")
 	// K9sDefaultScreenDumpDir represents a default directory where K9s screen dumps will be persisted.
 	K9sDefaultScreenDumpDir = filepath.Join(os.TempDir(), fmt.Sprintf("k9s-screens-%s", MustK9sUser()))
+	// K9sDefaultLogDumpDir represents a default directory where K9s log dumps will be persisted.
+	K9sDefaultLogDumpDir = filepath.Join(os.TempDir(), fmt.Sprintf("k9s-logs-%s", MustK9sUser()))
 )
 
 type (
@@ -112,6 +114,7 @@ func (c *Config) Refine(flags *genericclioptions.ConfigFlags, k9sFlags *Flags, c
 		c.K9s.CurrentCluster = *flags.ClusterName
 	}
 	EnsurePath(c.K9s.GetScreenDumpDir(), DefaultDirMod)
+	EnsurePath(c.K9s.GetLogDumpDir(), DefaultDirMod)
 
 	return nil
 }

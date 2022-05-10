@@ -81,6 +81,7 @@ func AccessorFor(f Factory, gvr client.GVR) (Accessor, error) {
 		client.NewGVR("contexts"):               &Context{},
 		client.NewGVR("containers"):             &Container{},
 		client.NewGVR("screendumps"):            &ScreenDump{},
+		client.NewGVR("logdumps"):               &LogDump{},
 		client.NewGVR("benchmarks"):             &Benchmark{},
 		client.NewGVR("portforwards"):           &PortForward{},
 		client.NewGVR("v1/services"):            &Service{},
@@ -267,6 +268,15 @@ func loadK9s(m ResourceMetas) {
 		Verbs:        []string{"delete"},
 		Categories:   []string{"k9s"},
 	}
+	m[client.NewGVR("logdumps")] = metav1.APIResource{
+		Name:         "logdumps",
+		Kind:         "LogDumps",
+		SingularName: "logdump",
+		ShortNames:   []string{"sd"},
+		Verbs:        []string{"delete"},
+		Categories:   []string{"k9s"},
+	}
+
 	m[client.NewGVR("benchmarks")] = metav1.APIResource{
 		Name:         "benchmarks",
 		Kind:         "Benchmarks",
