@@ -45,7 +45,6 @@ func NewK9s() *K9s {
 		Clusters:      make(map[string]*Cluster),
 		Thresholds:    NewThreshold(),
 		ScreenDumpDir: K9sDefaultScreenDumpDir,
-		LogDumpDir:    K9sDefaultLogDumpDir,
 	}
 }
 
@@ -186,20 +185,6 @@ func (k *K9s) GetScreenDumpDir() string {
 	return screenDumpDir
 }
 
-func (k *K9s) GetLogDumpDir() string {
-	logDumpDir := k.LogDumpDir
-
-	if k.manualLogDumpDir != nil && *k.manualLogDumpDir != "" {
-		logDumpDir = *k.manualLogDumpDir
-	}
-
-	if logDumpDir == "" {
-		return K9sDefaultLogDumpDir
-	}
-
-	return logDumpDir
-}
-
 func (k *K9s) validateDefaults() {
 	if k.RefreshRate <= 0 {
 		k.RefreshRate = defaultRefreshRate
@@ -209,9 +194,6 @@ func (k *K9s) validateDefaults() {
 	}
 	if k.ScreenDumpDir == "" {
 		k.ScreenDumpDir = K9sDefaultScreenDumpDir
-	}
-	if k.LogDumpDir == "" {
-		k.LogDumpDir = K9sDefaultLogDumpDir
 	}
 }
 

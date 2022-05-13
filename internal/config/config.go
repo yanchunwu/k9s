@@ -114,7 +114,6 @@ func (c *Config) Refine(flags *genericclioptions.ConfigFlags, k9sFlags *Flags, c
 		c.K9s.CurrentCluster = *flags.ClusterName
 	}
 	EnsurePath(c.K9s.GetScreenDumpDir(), DefaultDirMod)
-	EnsurePath(c.K9s.GetLogDumpDir(), DefaultDirMod)
 
 	return nil
 }

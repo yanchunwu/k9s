@@ -36,7 +36,7 @@ func NewLogDump(gvr client.GVR) ResourceViewer {
 }
 
 func (s *LogDump) dirContext(ctx context.Context) context.Context {
-	dir := filepath.Join(s.App().Config.K9s.GetLogDumpDir(), s.App().Config.K9s.CurrentContext)
+	dir := filepath.Join(s.App().Config.K9s.GetScreenDumpDir(), s.App().Config.K9s.CurrentContext)
 	log.Debug().Msgf("SD-DIR %q", dir)
 	config.EnsureFullPath(dir, config.DefaultDirMod)
 
