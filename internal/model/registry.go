@@ -43,6 +43,10 @@ var Registry = map[string]ResourceMeta{
 		DAO:      &dao.ScreenDump{},
 		Renderer: &render.ScreenDump{},
 	},
+	"logdumps": {
+		DAO:      &dao.LogDump{},
+		Renderer: &render.LogDump{},
+	},
 	"rbac": {
 		DAO:      &dao.Rbac{},
 		Renderer: &render.Rbac{},

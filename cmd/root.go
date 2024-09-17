@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"runtime/debug"
+
 	"github.com/derailed/k9s/internal/client"
 	"github.com/derailed/k9s/internal/color"
 	"github.com/derailed/k9s/internal/config"
@@ -11,8 +14,6 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
-	"os"
-	"runtime/debug"
 )
 
 const (
@@ -110,6 +111,7 @@ func loadConfiguration() *config.Config {
 	k9sCfg.K9s.OverrideWrite(*k9sFlags.Write)
 	k9sCfg.K9s.OverrideCommand(*k9sFlags.Command)
 	k9sCfg.K9s.OverrideScreenDumpDir(*k9sFlags.ScreenDumpDir)
+	k9sCfg.K9s.OverrideLogDumpDir(*k9sFlags.LogDumpDir)
 
 	if err := k9sCfg.Refine(k8sFlags, k9sFlags, k8sCfg); err != nil {
 		log.Error().Err(err).Msgf("refine failed")
@@ -219,6 +221,12 @@ func initK9sFlags() {
 		"screen-dump-dir",
 		"",
 		"Sets a path to a dir for a screen dumps",
+	)
+	rootCmd.Flags().StringVar(
+		k9sFlags.LogDumpDir,
+		"log-dump-dir",
+		"",
+		"Sets a path to a dir for a log dumps",
 	)
 	rootCmd.Flags()
 }

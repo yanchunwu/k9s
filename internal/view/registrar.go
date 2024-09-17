@@ -73,6 +73,9 @@ func miscViewers(vv MetaViewers) {
 	vv[client.NewGVR("screendumps")] = MetaViewer{
 		viewerFn: NewScreenDump,
 	}
+	vv[client.NewGVR("logdumps")] = MetaViewer{
+		viewerFn: NewLogDump,
+	}
 	vv[client.NewGVR("benchmarks")] = MetaViewer{
 		viewerFn: NewBenchmark,
 	}
